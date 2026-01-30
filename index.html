@@ -4,20 +4,72 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sürpriz 🎁</title>
+
   <style>
-    body { font-family: system-ui, Arial; margin: 0; background:#0b0b10; color:#fff; }
-    header { padding: 28px 18px; text-align:center; }
-    header h1 { margin:0 0 8px; font-size: 26px; }
-    header p { margin:0; opacity:.85; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 0 14px 30px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-    .grid img { width:100%; height:220px; object-fit:cover; border-radius:14px; cursor:pointer; }
-    .modal { position:fixed; inset:0; background:rgba(0,0,0,.75); display:none; align-items:center; justify-content:center; padding:18px; }
-    .modal img { max-width: 96vw; max-height: 90vh; border-radius: 16px; }
-    .hint { text-align:center; margin-top: 10px; opacity:.7; font-size: 13px; }
-    .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 14px; }
+    body {
+      font-family: system-ui, Arial;
+      margin: 0;
+      background: #0b0b10;
+      color: #fff;
+    }
+    header {
+      padding: 28px 18px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+    }
+    header p {
+      margin: 0;
+      opacity: .85;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 14px 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal img {
+      max-width: 96vw;
+      max-height: 90vh;
+      border-radius: 16px;
+    }
+    .hint {
+      text-align: center;
+      margin-top: 10px;
+      opacity: .7;
+      font-size: 13px;
+    }
+    .card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 14px;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>İyi ki varsın 💛</h1>
@@ -36,25 +88,34 @@
   </div>
 
   <script>
-    // photos/1.jpg ... photos/N.jpg
-    const N = 12; // 👈 foto sayına göre değiştir
+    const N = 3; // 👈 kaç foto varsa burayı değiştir
 
     const grid = document.getElementById('grid');
+
     for (let i = 1; i <= N; i++) {
       const img = document.createElement('img');
-      img.src = `photos/${i}.jpg`;
+      img.src = `photos/${i}.jpeg`; // 👈 .jpeg olarak AYARLANDI
       img.alt = `Foto ${i}`;
       img.loading = "lazy";
-      img.onerror = () => { img.style.display = "none"; };
-      img.onclick = (e) => { e.stopPropagation(); openModal(img.src); };
+      img.onclick = (e) => {
+        e.stopPropagation();
+        openModal(img.src);
+      };
       grid.appendChild(img);
     }
 
     const modal = document.getElementById('modal');
     const modalImg = document.getElementById('modalImg');
 
-    function openModal(src){ modalImg.src = src; modal.style.display = "flex"; }
-    function closeModal(){ modal.style.display = "none"; modalImg.src = ""; }
+    function openModal(src) {
+      modalImg.src = src;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalImg.src = "";
+    }
   </script>
 </body>
 </html>
